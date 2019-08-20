@@ -20,5 +20,12 @@
             <p>Le mal vient de ce que l homme se trompe au sujet du bien. Socrate</p>
             <p>Toute verite franchit trois etapes D abord elle est ridiculisee. Ensuite, elle subit une forte opposition. Puis, elle est consideree comme ayant toujours ete une evidence. Arthur Schopenhauer</p>
         </div>
+	{% for post in posts %}
+	    <div>
+                <p>publiee : {{ post.published_date }}</p>
+                <h2><a href="">{{ post.title }}</a></h2>
+                <p>{{ post.text|linebreaksbr }}</p>
+            </div>
+        {% endfor %}	
     </body>
 </html>
