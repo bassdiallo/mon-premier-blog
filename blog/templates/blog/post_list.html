@@ -1,31 +1,29 @@
-<html>
-    <head>
-        <title>Projet Django</title>
-    </head>
-    <body>
-        <div>
-            <h1><a href="/">Blog Projet Django</a></h1>
-        </div>
+{% extends 'blog/base.html' %}
 
-        <div>
-            <p>publiee le: 15-08-2019, 10:32</p>
-            <h2><a href="">Mon premier post</a></h2>
-            <p>Etre libre ce n est pas pouvoir ce que l on veut, mais c est vouloir ce que l on peut. J P. Sartre<br/>Confucius: Faire le bien sans chercher de recompense; fuir le mal sans craindre le chatiment:homme rare sous le ciel</p>
-        </div>
+{% block content %}
+		<div>
+			<p>publiee le: 15-08-2019, 10:32</p>
+			<h2><a href="">Mon premier post</a></h2>
+			<p>Etre libre ce n est pas pouvoir ce que l on veut, mais c est vouloir ce que l on peut. J P. Sartre<br/>Confucius: Faire le bien sans chercher de recompense; fuir le mal sans craindre le chatiment:homme rare sous le ciel</p>
+		</div>
 
-        <div>
-            <p>publiee le: 14.06.2014, 12:14</p>
-            <h2><a href="">Mon second post</a></h2>
-            <p>Mark Twain:Le fait que l homme distingue le bien du mal prouve sa superiorite intellectuelle par rapport a tout autre creature; mais le fait qu il puisse mal agir prouve l inferiorite de son esprit</p>
-            <p>Le mal vient de ce que l homme se trompe au sujet du bien. Socrate</p>
-            <p>Toute verite franchit trois etapes D abord elle est ridiculisee. Ensuite, elle subit une forte opposition. Puis, elle est consideree comme ayant toujours ete une evidence. Arthur Schopenhauer</p>
-        </div>
-	{% for post in posts %}
-	    <div>
-                <p>publiee : {{ post.published_date }}</p>
-                <h2><a href="">{{ post.title }}</a></h2>
-                <p>{{ post.text|linebreaksbr }}</p>
-            </div>
-        {% endfor %}	
-    </body>
-</html>
+		<div>
+			<p>publiee le: 14.06.2014, 12:14</p>
+			<h2><a href="">Mon second post</a></h2>
+			<p>Mark Twain:Le fait que l homme distingue le bien du mal prouve sa superiorite intellectuelle par rapport a tout autre creature; mais le fait qu il puisse mal agir prouve l inferiorite de son esprit</p>
+			<p>Le mal vient de ce que l homme se trompe au sujet du bien. Socrate</p>
+			<p>Toute verite franchit trois etapes D abord elle est ridiculisee. Ensuite, elle subit une forte opposition. Puis, elle est consideree comme ayant toujours ete une evidence. Arthur Schopenhauer</p>
+		</div>
+		<div class="content container">
+			<div class="row">
+				<div class="col-md-8">
+					{% for post in posts %}
+						<div class="post">
+							<div class="date">
+								<p>publiee : {{ post.published_date }}</p>
+							</div>
+							<h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+							<p>{{ post.text|linebreaksbr }}</p>
+						</div>
+					{% endfor %}
+{% endblock %}
